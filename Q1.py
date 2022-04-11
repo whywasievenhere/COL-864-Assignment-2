@@ -252,20 +252,30 @@ plt.show()
 
 ### Now plotting error as required.
 
-error_low = grid1.diff_list
+iter_num = 10
+grid3 = MDP_grid(0.01,iter_num,0.1)
+grid3.value_iteration()
+
+error_low = grid3.diff_list
 len1 = len(error_low)
-for i in range(len1,100):
+for i in range(len1,10):
     error_low.append(0)
 error_high = grid2.diff_list
 
-x_axis = [i for i in range(0,100)]
-
+x_axis = [i for i in range(0,iter_num)]
 plt.xlabel("Iterations")
 plt.ylabel("Max Norm Error")
 plt.plot(x_axis,error_low,color="red",label="discount=0.01")
+plt.legend()
+plt.savefig("c_1.png")
+plt.show()
+
+x_axis = [i for i in range(0,100)]
+plt.xlabel("Iterations")
+plt.ylabel("Max Norm Error")
 plt.plot(x_axis,error_high,color="blue",label="discount=0.99")
 plt.legend()
-plt.savefig("c.png")
+plt.savefig("c_2.png")
 plt.show()
 
     
